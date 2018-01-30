@@ -1,4 +1,4 @@
 # Assembly-Language-Lab
   
   # Terminal: 
-    nasm -f elf64 ($).asm && gcc ($).o -o ($) && ./($)
+    nasm -f elf64 main.asm && gcc main.o -o main && ./main
