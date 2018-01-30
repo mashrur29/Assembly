@@ -1,9 +1,1 @@
-// compile and run a file
-
-nasm -f elf test.asm && ld -m elf_i386 -s -o test test.o && ./test
-
-// integrate scanf/printf
-
-nasm -f elf64 test.asm
-gcc test.o -o test
-./test
+nasm -f elf64 ($).asm && gcc ($).o -o ($) && ./($)
