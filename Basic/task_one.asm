@@ -1,4 +1,4 @@
-, Find a + (b*c)/d
+; Find a + (b*c)/d
 
 segment .data
 a: dq 0
