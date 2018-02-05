@@ -27,4 +27,4 @@ mov RAX, 0
 pop RBP
 ret
 
-,nasm -f elf64 division.asm && gcc division.o -o division && ./division
+;nasm -f elf64 division.asm && gcc division.o -o division && ./division
