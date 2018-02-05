@@ -22,9 +22,7 @@ call scanf
 mov RAX , 0
 mov RDX, 0
 mov RAX , [a]
-mov RBX , [b]
-idiv RBX
-test RDX, 1
+test RAX, 1
 jz ELSE
 mov RDI, fmt_odd
 mov RSI, [a]
