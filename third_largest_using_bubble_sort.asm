@@ -44,28 +44,28 @@ INPUT_ARRAY:
 DONE:
 	mov RAX, 0
 	mov RCX, 0
-	mov RBX, 0	
+	mov RBX, 0
+	mov RBX, 5	
 
 OUTER_LOOP:
 	cmp RCX, 5
-	jz PRINT
+	jge PRINT
 	mov [cnt], RCX
 	mov RAX, [array+RCX*8]
+
+INNER_LOOP:
 	inc RCX
-	INNER_LOOP:
-		cmp RCX, 5
-		jz OUTER_LOOP
-		mov RBX, [array+RCX*8]
-		cmp RAX, RBX
-		inc RCX		
-		jl INNER_LOOP
-		mov [cnt2], RCX
-		mov [array+RCX*8], RAX
-		mov RCX, [cnt]
-		mov [array+RCX*8], RAX
-		mov RCX, [cnt2]
-		jmp INNER_LOOP
+	cmp RCX, 5
+	jz OK 
+	cmp RAX, [array+RCX*8]		
+	jle INNER_LOOP		
+	xchg RAX, [array+RCX*8]
+	jmp INNER_LOOP
+
+OK:
 	mov RCX, [cnt]
+	mov [array+RCX*8], RAX
+	inc RCX
 	jmp OUTER_LOOP
 
 PRINT:
