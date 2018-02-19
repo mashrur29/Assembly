@@ -1,4 +1,5 @@
-; Input 20 numbers and find sum
+; Write an assembly program that would input twenty numbers from the user and print
+; sum, then the first number, then the 2nd number followed by 3rd number and so on.
 segment .data
 a: dq 2
 b: dq 0
