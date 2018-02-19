@@ -1,4 +1,8 @@
-; Input 10 numbers and find value
+; Write an assembly program that reads 10 numbers from the user. The program then reads
+; a number between 0 to 9, and shows the number at the corresponding index number. For
+; instance, if the array is a and the user enters 3, your program should print the value at
+; position 3.
+
 segment .data
 a: dq 2
 b: dq 0
