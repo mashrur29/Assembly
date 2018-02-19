@@ -4,6 +4,8 @@
 ; “Smallest number -5 was found at location 2”.
 ; “Largest number 13 was found at location 1”.
 
+; goo.gl/GebF6p
+
 segment .data
 a: dq 2
 b: dq 0
