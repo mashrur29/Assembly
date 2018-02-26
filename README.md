@@ -5,3 +5,6 @@
     
   # Array Practice:
     https://goo.gl/GebF6p>
+  
+  # Second Practice:
+    goo.gl/rSM1CU
