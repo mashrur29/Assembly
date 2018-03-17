@@ -37,12 +37,36 @@ mov RAX, 0
 mov RBX, 0
 mov RCX, 0
 
+LOWER_CASE_CONVERT:
+	cmp qword[str + RCX], 0
+	jz FINISH_CONVERT
+	mov RAX, 0
+	mov AL, [str + RCX]
+	cmp RAX, 97
+	jl CONVERT
+DONE:
+	inc RCX
+	jmp LOWER_CASE_CONVERT
+
+CONVERT:
+	mov RAX, 0
+	mov AL, [str + RCX]
+	sub RAX, 32d
+	mov [str + RCX], RAX
+	jmp DONE
+
+FINISH_CONVERT:
+	mov RAX, 0
+	mov RBX, 0
+	mov RCX, 0
+
 STRING_SIZE:
 	cmp qword[str + RCX], 0
 	jz FINISH
 	inc qword[string_sz]
 	inc RCX
 	jmp STRING_SIZE
+
 
 FINISH:
 	mov RAX, 0
