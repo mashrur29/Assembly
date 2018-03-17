@@ -17,6 +17,7 @@ new_line: dq "", 10, 0
 fmt_out: dq "%c", 0
 cnt: dq 0
 size: dq 0
+size1: dq 0
 
 section .bss
 str1: resq 20
@@ -55,15 +56,19 @@ DONE:
 	mov RCX, 0
 
 SIZE_LOOP2:
-	cmp qword[str1 + RCX], 0
+	cmp qword[str2 + RCX], 0
 	jz DONE_SIZE_CHECK
 	inc RAX
 	cmp RAX, [size]
 	jg NOT_EQUAL
 	inc RCX
+	mov [size1], RCX
 	jmp SIZE_LOOP2
 
 DONE_SIZE_CHECK:
+	mov RAX, [size]
+	cmp RCX, [size]
+	jne NOT_EQUAL
 	mov RAX, 0
 	mov RBX, 0
 	mov RCX, 0
