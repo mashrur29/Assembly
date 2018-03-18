@@ -15,6 +15,7 @@ fmt_character: dq "The character is: %c", 10, 0
 fmt_debug: dq "HERE : %c", 10, 0
 new_line: dq "", 10, 0
 cnt: dq 0
+linescan db "%254[^\n]", 0x00
 tmp: dq 0
 vowel: dq 0
 consonant: dq 0
@@ -26,14 +27,17 @@ segment .text
 global main
 extern printf
 extern scanf
+extern stdin
+extern getline
+extern getchar
+extern gets
 
 main:
 push RBP
 
 mov RAX, 0
-mov RSI, str
-mov RDI, fmt_in
-call scanf
+mov RDI, str
+call gets
 
 mov RAX, 0
 mov RBX, 0
@@ -72,6 +76,10 @@ SCAN_STRING:
 	cmp RAX, RBX
 	jz INC_VOWEL
 
+	mov RBX, 32
+	cmp  RAX, RBX
+	jz SPACE
+
 	jmp INC_CONS
 
 INC_VOWEL:
@@ -82,6 +90,11 @@ INC_VOWEL:
 
 INC_CONS:
 	inc qword[consonant]
+	mov RCX, [cnt]
+	inc RCX
+	jmp SCAN_STRING
+
+SPACE:
 	mov RCX, [cnt]
 	inc RCX
 	jmp SCAN_STRING
