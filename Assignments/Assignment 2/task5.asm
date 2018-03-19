@@ -2,7 +2,7 @@
 ; Input: 3
 ; Output:
 ;   *
-;  ***
+;  * *
 ; *****
 
 
@@ -67,23 +67,38 @@ OUTER_LOOP:
 	DONE:
 		mov RAX, [outer_cnt]
 		add RAX, RAX
-		inc RAX
 		mov [stars], RAX
+		dec qword[stars]
+		mov RDI, fmt_out
+		call printf
 		mov RAX, 0
 		mov RCX, 0
 		
 	STAR_LOOP:
 		cmp RCX, [stars]
-		jz FINISH_ROW
+		jge FINISH_ROW
 		mov [cnt_tmp], RCX
-		mov RDI, fmt_out
+		mov RAX, [outer_cnt]
+		mov RBX, [n]
+		dec RBX
+		cmp RAX, RBX
+		jz STARS
+		mov RDI, spc
 		call printf
-		mov RCX, [cnt_tmp]
+		jmp DONE1
+STARS:  mov RDI, fmt_out
+		call printf		
+DONE1:	mov RCX, [cnt_tmp]
 		inc RCX
 		jmp STAR_LOOP
 
 	FINISH_ROW:
-		mov RDI, new_line
+		mov RAX, [outer_cnt]
+		cmp RAX, 0
+		je OK
+		mov RDI, fmt_out
+		call printf
+OK:		mov RDI, new_line
 		call printf
 		mov RCX, [outer_cnt]
 		dec qword[space]
