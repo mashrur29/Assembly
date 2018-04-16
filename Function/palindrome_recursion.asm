@@ -1,4 +1,4 @@
-; all possible permutation
+; palindrome check
 
 segment .data
 
